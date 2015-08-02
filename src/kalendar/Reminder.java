@@ -32,16 +32,16 @@ public class Reminder extends Calendar {
 	 */
 	Reminder(int day, int month, int year, String note) {
 		if (day < 10) {
-			dateOfReminder = "0" + Integer.toString(day) + ":";
+			dateOfReminder = "0" + Integer.toString(day) + "/";
 		} else {
-			dateOfReminder = Integer.toString(day) + ":";
+			dateOfReminder = Integer.toString(day) + "/";
 		}
 		if (month < 10) {
-			dateOfReminder += "0" + Integer.toString(month) + ":";
+			dateOfReminder += "0" + Integer.toString(month) + "/";
 		} else {
-			dateOfReminder += Integer.toString(month) + ":";
+			dateOfReminder += Integer.toString(month) + "/";
 		}
-		dateOfReminder += Integer.toString(year) + ":";
+		dateOfReminder += Integer.toString(year);
 		reminderNote = note;
 
 	}
@@ -112,7 +112,7 @@ public class Reminder extends Calendar {
 		try {
 			input = new Scanner(System.in);
 			System.out
-					.print("Unesite broj dan za koji zelite staviti podsjetnik: ");
+					.print("Unesite broj dana za koji zelite staviti podsjetnik: ");
 			numOfDay = input.nextInt();// dan za podsjetnik
 			input.nextLine();
 			// ako je uneseni dan 0 ili veci od broja dana u tom mjeseci ponovo
@@ -150,8 +150,7 @@ public class Reminder extends Calendar {
 		System.out.println("---------------------");
 
 		for (Reminder rem : reminderList) {
-			String date = rem.dateOfReminder.replace(':', '.');
-			System.out.println(date + " " + rem.reminderNote + "\n");
+			System.out.println(rem.dateOfReminder + " " + rem.reminderNote + "\n");
 		}
 	}
 
@@ -163,7 +162,7 @@ public class Reminder extends Calendar {
 		ArrayList<Reminder> remindersForPrinting = new ArrayList<>();
 		if (reminderList.size() > 0) {
 			for (Reminder r : reminderList) {
-				String[] date = r.dateOfReminder.split(":");
+				String[] date = r.dateOfReminder.split("/");
 				int monthReminder = Integer.parseInt(date[1]);
 				int yearReminder = Integer.parseInt(date[2]);
 				if (month == monthReminder && year == yearReminder) {
@@ -183,9 +182,7 @@ public class Reminder extends Calendar {
 		System.out.println("\n");
 		if (remindersForPrinting.size() > 0) {
 			for (Reminder reminder : remindersForPrinting) {
-				String date = reminder.dateOfReminder.replace(':', '.');
-
-				System.out.println(date + " " + reminder.reminderNote);
+				System.out.println(reminder.dateOfReminder + " " + reminder.reminderNote);
 			}
 		}
 	}

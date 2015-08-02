@@ -222,21 +222,10 @@ public class Calendar {
 		int k = y % 100;
 		int j = y / 100;
 
-		int day = ((1 + (((m + 1) * 26) / 10) + k + (k / 4) + (j / 4)) + (5 * j)) % 7;// Zeller-ova
-																						// formula
-																						// (jedinica
-																						// na
-																						// pocetku
-																						// znaci
-																						// da
-																						// trazim
-																						// dan
-																						// u
-																						// sedmici
-																						// za
-																						// prvi
-																						// dan
-																						// mjeseca
+		/*
+		 *  Zeller-ova formula (jedinica na pocetku znaci da trazim dan u sedmici za prvi dan mjeseca
+		 */
+		int day = ((1 + (((m + 1) * 26) / 10) + k + (k / 4) + (j / 4)) + (5 * j)) % 7;
 
 		if (day == 0) {
 			day = 6;
